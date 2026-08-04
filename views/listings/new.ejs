@@ -1,0 +1,96 @@
+
+
+<% layout("/layouts/boilerplate") %>
+
+<div class="row mt-4">
+  <div class="col-6 offset-3">
+    <h3>Create New Listing</h3>
+
+    <form action="/listings" method="POST"  enctype="multipart/form-data">
+
+      <div class="mb-3">
+        <label>Title</label>
+        <input
+          name="listing[title]"
+          class="form-control"
+          required
+        >
+      </div>
+
+      <div class="mb-3">
+        <label>Description</label>
+        <textarea
+          name="listing[description]"
+          class="form-control"
+          required
+        ></textarea>
+      </div>
+
+      <div class="mb-3">
+        <label>Image URL</label>
+    
+        <input
+  type="file"
+  name="listing[image]"
+  class="form-control"
+  required
+/>
+
+      </div>
+
+      <div class="mb-3">
+        <label>Price</label>
+        <input
+          name="listing[price]"
+          type="number"
+          class="form-control"
+          required
+        >
+      </div>
+
+      <div class="mb-3">
+        <label>Location</label>
+        <input
+          name="listing[location]"
+          class="form-control"
+          required
+        >
+      </div>
+
+      <div class="mb-3">
+        <label>Country</label>
+        <input
+          name="listing[country]"
+          class="form-control"
+          required
+        >
+      </div>
+      
+    <div class="mb-3">
+  <label class="form-label">Category</label>
+  <select
+    name="listing[category]"
+    class="form-select"
+    required
+  >
+    <option value="" disabled selected>Select category</option>
+
+    <option value="Trending">🔥 Trending</option>
+    <option value="Rooms">🛏 Rooms</option>
+    <option value="Iconic">🏙 Iconic cities</option>
+    <option value="Mountains">🏔 Mountains</option>
+    <option value="Castle">🏰 Castle</option>
+    <option value="Pools">🏊 Amazing Pools</option>
+    <option value="Camping">🏕 Camping</option>
+    <option value="Farms">🐄 Farms</option>
+    <option value="Arctic">❄ Arctic</option>
+    <option value="Domes">🏠 Domes</option>
+    <option value="Boats">🚢 Boats</option>
+  </select>
+</div>
+
+
+      <button  class="btn btn-dark " >Create</button>
+    </form>
+  </div>
+</div>

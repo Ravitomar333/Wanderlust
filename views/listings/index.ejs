@@ -1,0 +1,158 @@
+
+ <% layout("/layouts/boilerplate") %>
+
+ <div id= "searchbar">
+  
+      
+    <form class="d-flex me-md-3 my-2 my-md-0" role="search" action="/listings" method="GET">
+  <input
+    class="form-control me-2 search-input"
+    type="search"
+    name="search"
+    placeholder="Search Destinations"
+    value="<%= typeof search !== 'undefined' ? search : '' %>"
+  />
+  <button class="btn search-btn" type="submit">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="d-none d-md-inline">Search</span>
+  </button>
+</form>
+
+
+    
+ </div>
+
+
+<div id="filters" >
+  <div class="filter" data-category="Trending">
+      <div><i class="fa-solid fa-fire"></i></div>    
+        <p>Trending</p> 
+  </div>
+
+<div class="filter" data-category="Rooms">
+      <div><i class="fa fa-bed" aria-hidden="true"></i></div>    
+        <p>Rooms</p> 
+  </div>
+
+  <div class="filter"data-category="Iconic" >
+      <div><i class="fa-solid fa-mountain-city" aria-hidden="true"></i></div>    
+        <p>Iconic cities</p> 
+  </div>
+
+  <div class="filter" data-category="Mountains">
+      <div><i class="fa-solid fa-mountain"  aria-hidden="true"></i></div>    
+        <p>Mountains</p> 
+  </div>
+
+  <div class="filter" data-category="Castle">
+      <div><i class="fa-brands fa-fort-awesome" aria-hidden="true"></i></div>    
+        <p>Castle</p> 
+  </div>
+
+  <div class="filter" data-category="Pools">
+      <div><i class="fa-solid fa-person-swimming" aria-hidden="true"></i></div>    
+        <p>Amazing Pools</p> 
+  </div>
+
+  <div class="filter" data-category="Camping">
+      <div><i class="fa-solid fa-campground" aria-hidden="true"></i></div>    
+        <p>Camping</p> 
+  </div>
+
+  <div class="filter" data-category="Farms">
+      <div><i class="fa-solid fa-cow" aria-hidden="true"></i></div>    
+        <p>Farms</p> 
+  </div>
+
+  <div class="filter" data-category="Arctic">
+      <div><i class="fa-regular fa-snowflake  " aria-hidden="true"></i></div>    
+        <p>Arctic</p> 
+          </div>
+
+        <div class="filter" data-category="Domes">
+      <div><i class="fa-solid fa-igloo" aria-hidden="true"></i></div>    
+        <p>Domes</p> 
+  </div>
+
+  <div class="filter" data-category="Boats">
+      <div><i class="fa-solid fa-ship" aria-hidden="true"></i></div>    
+        <p>Boats</p> 
+    </div>
+  
+
+
+
+  <div class="tax-toggle">
+    <div class="form-check-reverse form-switch">
+  <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
+  <label class="form-check-label" for="switchCheckDefault">Display Total after  Taxes</label>
+</div>
+
+  </div>
+</div>
+
+
+
+<div class="container mt-4">
+  <div class="row">
+
+    <% for (let listing of listings) { %>
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm">
+
+          <img
+            src="<%= listing.image?.url || '/images/default.jpg' %>"
+            class="card-img-top"
+            style="height: 200px; object-fit: cover;"
+            alt="listing image"
+          >
+
+          <div class="card-body">
+            <h5 class="card-title"><%= listing.title %></h5>
+            <p class="card-text">&#8377
+              <%= listing.price %>/night
+              <i class="tax-info"> &nbsp;&nbsp+ 18% GST</i>
+            </p>
+            <p class="card-text">&#128205<%= listing.location %>,<%= listing.country %></p>
+          </div>
+
+          <div class="card-footer bg-white border-0">
+            <a href="/listings/<%= listing._id %>" class="btn btn-info"> View </a>
+          </div>
+
+        </div>
+      </div>
+    <% } %>
+
+  </div>
+</div>
+
+<script>
+
+  let taxSwitch = document.getElementById("switchCheckDefault");
+  taxSwitch.addEventListener("click",()=>{
+    let taxInfo = document.getElementsByClassName("tax-info");
+   for(info of taxInfo){
+    if(info.style.display != "inline"){
+           info.style.display = "inline";
+   }else{
+    info.style.display = "none"
+   }
+  }
+  });
+
+  document.querySelectorAll(".filter").forEach(filter => {
+    filter.addEventListener("click", () => {
+      const category = filter.dataset.category;
+      window.location.href = `/listings?category=${category}`;
+    });
+  });
+   const currentCategory =
+    new URLSearchParams(window.location.search).get("category");
+
+  document.querySelectorAll(".filter").forEach(filter => {
+    if (filter.dataset.category === currentCategory) {
+      filter.classList.add("active");
+    }
+  });
+</script>

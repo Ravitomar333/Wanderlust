@@ -1,0 +1,82 @@
+<style>
+  #name{
+    color: red;
+
+  }
+  .search-btn{
+    background-color:#fe424d;
+    color: #fff;
+    border-radius: 25px;
+    padding: 0 1rem 0 1rem;
+
+  }
+   .search-btn:hover{
+       background-color:#fe424d;
+    color: #fff;
+   }
+   .search-btn i {
+    display: inline;
+    margin-right: 0.5rem;
+   }
+
+ .search-input {
+  border-radius: 25px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .search-input {
+    width: 260px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .navbar-collapse {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+
+    background-color: #fff;
+    z-index: 1050;
+
+    padding: 1rem;
+    border-bottom: 1px solid #ddd;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  }
+}
+
+
+  
+</style>
+
+
+<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/listings"><i class="fa-regular fa-house"></i></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link" href="/listings"><h3 id ='name'>Wanderlust</h3></a>
+
+     </div>
+
+     <!-- searchbar -->
+
+     <div class="navbar-nav ms-auto">
+              <a class="nav-link" href="/listings/new">Host your Home</a>
+      <%  if(!currUser) { %>
+        <a class="nav-link " href="/signUp"><b>Sign Up </b></a>
+        <a class="nav-link" href="/login"><b>Log In</b></a>
+        <% }%>
+        <%  if(currUser) { %>
+        <a class="nav-link" href="/logout"><b>LogOut</b></a>
+         <% }%> 
+       
+    </div>
+  </div>
+</nav>
